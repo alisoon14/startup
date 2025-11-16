@@ -7,7 +7,6 @@ app.use(express.json());
 
 const DB_FILE = './db.json';
 
-// utils
 function readDB() {
   if (!fs.existsSync(DB_FILE)) return {};
   return JSON.parse(fs.readFileSync(DB_FILE, 'utf-8'));
@@ -19,7 +18,6 @@ function generateAccessKey() {
   return Array(16).fill(0).map(() => Math.random().toString(36)[2]).join('');
 }
 
-// отправить/получить ключ по username
 app.post('/get-key', (req, res) => {
   const { tg_username } = req.body;
   const db = readDB();
@@ -33,7 +31,6 @@ app.post('/get-key', (req, res) => {
   }
 });
 
-// проверить ключ
 app.post('/validate-key', (req, res) => {
   const { tg_username, access_key } = req.body;
   const db = readDB();
