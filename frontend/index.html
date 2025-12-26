@@ -1,85 +1,216 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Map Тим — Генерация Застройки</title>
-    <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <title>Генератор застройки — демо</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Генератор объемной застройки для девелоперов и архитектурных бюро: быстрые концепции, автоматический пересчет ТЭПов и сравнение сценариев."
+  />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Пример подключения Inter, если нужно -->
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  />
 </head>
 <body>
-    
-<header class="header">
-    <a href="index.html" class="logo-link">
-        <img src="C:\vscode\startup\map tim logo.png" alt="Map Тим" class="logo-image">
+  <!-- Шапка -->
+  <header class="header">
+    <a href="#top" class="logo-link">
+      <img src="" alt="Логотип" class="logo-image" />
     </a>
     <nav class="nav">
-        <a href="#features">Возможности</a>
-        <a href="#how">Как работает</a>
-        <a href="#contact">Контакты</a>
+      <a href="how.html">Как это работает</a>
+      <a href="features.html">Возможности</a>
     </nav>
-</header>
-<section class="hero">
-    <h1 class="hero-title">Генерация застройки онлайн</h1>
-    <p class="hero-subtitle">
-        Платформа для прототипирования, редактирования и анализа параметров зданий — в реальном времени.
+  </header>
+
+  <!-- Hero-секция -->
+  <main>
+    <section class="hero">
+      <h1 class="hero-title">
+        Генератор объемной застройки
+      </h1>
+      <p class="hero-subtitle">
+        Экономьте до 2–3 дней на концепции: задайте параметры участка, получите
+        варианты застройки с автоматически пересчитанными ТЭПами и
+        экспортируйте результат в привычные форматы.
+      </p>
+      <button id="startDemo" class="btn-primary">
+        Начать демо
+      </button>
+      <p
+        class="hero-subtitle"
+        style="margin-top: 12px; font-size: 0.95rem; opacity: 0.7;"
+      >
+        Быстрый демо-режим без установки и интеграций
+      </p>
+    </section>
+
+    <!-- Блок возможностей -->
+    <section class="features" id="features">
+      <div class="feature">
+        <h3>Быстрые концепции</h3>
+        <p>
+          Создавайте базовые объёмы зданий за минуты вместо дней ручного
+          моделирования.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Параметрическое редактирование</h3>
+        <p>
+          Меняйте этажность, площади и высоту, система автоматически
+          пересчитывает ключевые метрики проекта.
+        </p>
+      </div>
+      <div class="feature">
+        <h3>Метрики и экспорт</h3>
+        <p>
+          Анализируйте ТЭПы и выгружайте данные для дальнейшей работы в
+          привычных инструментах.
+        </p>
+      </div>
+    </section>
+
+    <!-- Как это работает -->
+    <section class="how" id="how">
+      <h2 class="section-title">Как это работает</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Опишите участок</h3>
+          <p>
+            Загружаете данные участка или задаете ключевые параметры: площадь,
+            ограничения и желаемые типы застройки.
+          </p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Генерируете застройку</h3>
+          <p>
+            Нажимаете «Генерировать» и получаете вариант объемной
+            застройки с основными метриками проекта, которые вы можете редактировать под себя.
+          </p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Сравниваете и дорабатываете</h3>
+          <p>
+            Меняете этажность и площади, система автоматически пересчитывает
+            ТЭПы и помогает выбрать оптимальный сценарий.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Превью демо / карта -->
+    <section class="demo-container" id="demo">
+      <h2 class="section-title">Онлайн-демо генератора</h2>
+      <p style="text-align: center; max-width: 700px; margin: 0 auto 24px;">
+        Оцените работу генератора на тестовом участке. Полный функционал доступен
+        по ключу доступа.
+      </p>
+
+      <div class="demo-controls">
+        <button class="control-btn" id="openDemoFromSection">
+          Открыть демо
+        </button>
+        <button class="control-btn back-btn" onclick="window.location.href='#how'">
+          Подробнее о процессе
+        </button>
+      </div>
+
+      <div class="map-container">
+        <img
+          src="../assets/demo-preview.png"
+          alt="Превью генератора застройки"
+          style="width: 100%; height: 100%; object-fit: cover;"
+        />
+      </div>
+    </section>
+  </main>
+
+  <!-- Подвал -->
+  <footer class="footer">
+    <p>© 2025 Генератор застройки. Все права защищены.</p>
+    <p>
+      Для девелоперов, архитектурных бюро и консалтинговых компаний по
+      девелопменту.
     </p>
-    <button class="btn-primary" id="startDemo">Начать демо</button>
-</section>
+    <!-- можно добавить ссылки на политику и контакты -->
+  </footer>
 
-<section class="features" id="features">
-    <div class="feature">
-        <h3>Генерация объектов</h3>
-        <p>Создавайте базовые объёмы зданий, вводя ключевые параметры.</p>
-    </div>
-    <div class="feature">
-        <h3>Редактирование параметров</h3>
-        <p>Изменение этажности, площади, высоты и других характеристик.</p>
-    </div>
-    <div class="feature">
-        <h3>Автоматический анализ</h3>
-        <p>Система сама пересчитывает основные метрики проекта.</p>
-    </div>
-</section>
+  <!-- Модальное окно (доступ по ключу) -->
+  <div id="demoModal" class="modal-overlay" style="display: none;">
+    <div class="modal-content">
+      <button id="closeModal" class="modal-close">&times;</button>
+      <h2 class="modal-title">Доступ к демо-версии</h2>
+      <p class="modal-small">
+        Введите email и ключ, чтобы получить доступ к полному демо генератора
+        застройки.
+      </p>
 
-<section class="how" id="how">
-    <h2 class="section-title">Как это работает</h2>
-    <div class="steps">
-        <div class="step">
-            <div class="num">1</div>
-            <p>Введите параметры будущего объекта</p>
-        </div>
-        <div class="step">
-            <div class="num">2</div>
-            <p>Нажмите «Генерировать» и получите застройку</p>
-        </div>
-        <div class="step">
-            <div class="num">3</div>
-            <p>Редактируйте и анализируйте параметры</p>
-        </div>
-    </div>
-</section>
+      <label for="tgUsername" class="modal-label">Email</label>
+      <input
+        type="email"
+        id="tgUsername"
+        class="modal-input"
+        placeholder="you@company.ru"
+      />
 
-<footer class="footer" id="contact">
-    <p>Email: info@maptim.example</p>
-    <p>© 2025 MAP TIM</p>
-</footer>
+      <label for="accessKeyInput" class="modal-label">Ключ доступа</label>
+      <input
+        type="text"
+        id="accessKeyInput"
+        class="modal-input"
+        placeholder="Вставьте полученный ключ"
+      />
 
-<script src="app.js"></script>
-</body>
-<div id="demoModal" class="modal-overlay" style="display:none;">
-  <div class="modal-content">
-    <button id="closeModal" class="modal-close">&times;</button>
-    <h2 class="modal-title">Введите ключ для доступа к демо версии</h2>
-    <input type="text" id="accessKeyInput" class="modal-input" placeholder="Ваш ключ доступа">
-    <button  id="accessKeyBtn" class="btn-primary modal-btn">Войти</button>
-    <div class="modal-divider"></div>
-    <button id="noKeyBtn" class="modal-link">Нет ключа</button>
-    <div id="tgForm" style="display:none; margin-top:20px;">
-      <label for="tgUsername" class="modal-label">Введите почту:</label>
-      <input type="text" id="tgUsername" class="modal-input" placeholder="mail@example.com">
-      <button id="getKeyBtn" class="btn-primary modal-btn-small">Отправить</button>
-      <small class="modal-small">Бот отправит вам уникальный 16-значный ключ доступа</small>
+      <button id="accessKeyBtn" class="modal-btn btn-primary">
+        Войти в демо
+      </button>
+
+      <div class="modal-divider"></div>
+
+      <p class="modal-small">
+        Еще нет ключа? Оставьте email — вышлем персональный ключ доступа.
+      </p>
+      <button id="getKeyBtn" class="modal-btn-small control-btn">
+        Получить ключ на email
+      </button>
+
+      <!-- Дополнительная форма, если вы хотите разносить сценарии -->
+      <form id="tgForm" style="display: none; margin-top: 16px;">
+        <!-- При желании можно сделать отдельную форму для заявки -->
+      </form>
     </div>
   </div>
-</div>
+
+  <script src="app.js"></script>
+  <script>
+    // Проброс кнопки из блока демо к той же логике открытия модалки
+    document.addEventListener('DOMContentLoaded', function () {
+      var openDemoBtn = document.getElementById('openDemoFromSection');
+      var startDemoBtn = document.getElementById('startDemo');
+
+      if (openDemoBtn && startDemoBtn) {
+        openDemoBtn.addEventListener('click', function () {
+          startDemoBtn.click();
+        });
+      }
+    });
+  </script>
+</body>
 </html>
