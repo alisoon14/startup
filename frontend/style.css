@@ -288,4 +288,155 @@ body {
 .modal-close:hover {
   color: #e5e5e5;
 }
-    
+/* Планшеты: до 1024px */
+@media (max-width: 1024px) {
+  .header {
+    padding: 16px 24px;
+  }
+
+  .hero {
+    padding: 80px 24px;
+  }
+
+  .hero-title {
+    font-size: 2.6rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    margin-bottom: 28px;
+  }
+
+  .features {
+    padding: 60px 24px;
+    gap: 24px;
+  }
+
+  .how {
+    padding: 60px 24px;
+  }
+
+  .demo-container {
+    padding: 40px 24px;
+  }
+
+  .map-container {
+    height: 450px;
+  }
+}
+
+/*бзаоваая адаптивная верстка*/
+
+/* Мобильные: до 768px */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 16px;
+    flex-direction: row;
+  }
+
+  .nav a {
+    margin-left: 16px;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    padding: 60px 16px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 24px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .features {
+    padding: 50px 16px;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .feature {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .how {
+    padding: 50px 16px;
+  }
+
+  .steps {
+    flex-direction: column;
+    gap: 32px;
+    align-items: center;
+  }
+
+  .step {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .demo-container {
+    padding: 40px 16px;
+  }
+
+  .demo-controls {
+    justify-content: center;
+  }
+
+  .control-btn {
+    width: 100%;
+    max-width: 320px;
+    text-align: center;
+  }
+
+  .map-container {
+    height: 320px;
+  }
+
+  .footer {
+    padding: 24px 16px;
+    margin-top: 40px;
+  }
+
+  .modal-content {
+    padding: 28px 20px;
+    min-width: auto;
+    width: 90vw;
+  }
+
+  .modal-input {
+    width: 100%;
+  }
+
+  .modal-btn,
+  .modal-btn-small {
+    width: 100%;
+  }
+}
+
+/* Очень маленькие экраны: до 480px */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.7rem;
+  }
+
+  .header {
+    padding-inline: 12px;
+  }
+
+  .nav a {
+    margin-left: 12px;
+  }
+
+  .map-container {
+    height: 260px;
+  }
+}
