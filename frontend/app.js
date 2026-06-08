@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const data = await res.json();
 
         if (data.valid) {
-          window.location.href = 'demo.html';
+          window.location.href = '../Generator/index.html';
         } else {
           alert('Неверный ключ. Проверьте ввод или получите новый.');
         }
