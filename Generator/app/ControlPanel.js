@@ -7,6 +7,13 @@ export class ControlPanel {
         const container = document.getElementById('ui-container');
 
         container.innerHTML = `
+            <a href="../frontend/index.html" style="display: inline-flex; align-items: center; gap: 6px;
+                    margin-bottom: 14px; color: #8a9ba8; text-decoration: none; font-size: 12px;
+                    transition: color 0.2s ease;"
+               onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#8a9ba8'">
+                ← На сайт MapTim
+            </a>
+
             <div class="control-section">
                 <h3>Режимы</h3>
                 <div class="mode-indicator">
