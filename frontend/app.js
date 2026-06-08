@@ -100,8 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (data.error) {
           alert(data.error);
-        } else if (data.accesskey) {
-          alert('Ключ отправлен на почту. Проверьте inbox и спам.');
+        } else if (data.email_sent) {
+          alert(data.message || 'Ключ отправлен на почту. Проверьте inbox и спам.');
         } else {
           alert('Неизвестный ответ сервера.');
         }

@@ -1,5 +1,6 @@
 import logging
 import re
+from datetime import datetime, timedelta
 
 from fastapi import FastAPI, Request, Depends
 from sqlalchemy.orm import Session
@@ -31,6 +32,8 @@ ALLOWED_ORIGINS = [
     for origin in os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
     if origin.strip()
 ]
+
+ACCESS_KEY_TTL_DAYS = int(os.getenv("ACCESS_KEY_TTL_DAYS", 30))
 
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
@@ -83,21 +86,25 @@ async def get_key(request: Request, db: Session = Depends(get_db)):
 
     existing_key = db.query(AccessKey).filter(AccessKey.email == email).first()
     if existing_key:
-        # не шлём письмо второй раз, просто возвращаем ключ
-        return {"accesskey": existing_key.access_key}
+        key = existing_key.access_key
+    else:
+        key = generate_key()
+        db.add(AccessKey(
+            email=email,
+            access_key=key,
+            tg_username=tg_username,
+            expires_at=datetime.utcnow() + timedelta(days=ACCESS_KEY_TTL_DAYS)
+        ))
+        db.commit()
 
-    key = generate_key()
-    new_access = AccessKey(email=email, access_key=key, tg_username=tg_username)
-    db.add(new_access)
-    db.commit()
-
+    # Ключ отправляется только на почту и никогда не возвращается в ответе API —
+    # иначе любой, кто знает чужой email, мог бы получить чужой ключ доступа.
     try:
         send_email(email, key)
-        return {"accesskey": key, "email_sent": True}
+        return {"email_sent": True, "message": "Ключ отправлен на почту. Проверьте inbox и спам."}
     except Exception as e:
         logger.error("Ошибка при отправке email: %s", e)
-        # ключ уже сохранён в БД, просто говорим фронту, что письмо не ушло
-        return {"accesskey": key, "email_sent": False, "error": "Не удалось отправить письмо, но ключ сохранён"}
+        return {"email_sent": False, "error": "Не удалось отправить письмо. Попробуйте позже."}
 
 
 @app.post("/validate-key")
@@ -111,18 +118,23 @@ async def validate_key(request: Request, db: Session = Depends(get_db)):
     if not email or not access_key:
         return {"valid": False, "error": "Email and access_key required"}
 
-    # Проверяем ключ в БД
     record = db.query(AccessKey).filter(
         AccessKey.email == email,
         AccessKey.access_key == access_key
     ).first()
 
+    is_expired = record is not None and record.expires_at is not None and record.expires_at < datetime.utcnow()
+    is_valid = record is not None and not is_expired
+
     # Обновляем tg_username если он передан
-    if record and tg_username != "anonymous":
+    if is_valid and tg_username != "anonymous":
         record.tg_username = tg_username
         db.commit()
 
-    return {"valid": record is not None}
+    if is_expired:
+        return {"valid": False, "error": "Срок действия ключа истёк, запросите новый"}
+
+    return {"valid": is_valid}
 
 @app.get("/health")
 async def health():
