@@ -1900,5 +1900,21 @@
             }
         });
     </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Перехватываем Enter во всех текстовых/числовых инпутах,
+    // чтобы он не "нажимал" кнопку по умолчанию
+    document.addEventListener('keydown', (e) => {
+      const target = e.target;
+
+      if (
+        (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') &&
+        e.key === 'Enter'
+      ) {
+        e.preventDefault(); // не даём браузеру триггерить кнопку / submit формы
+      }
+    });
+  });
+</script>
 </body>
 </html>

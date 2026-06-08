@@ -9,7 +9,11 @@ document.addEventListener('DOMContentLoaded', function () {
   const accessKeyInput = document.getElementById('accessKeyInput');
   const getKeyBtn = document.getElementById('getKeyBtn'); // кнопка «Отправить»
 
-  const API_BASE_URL = 'http://localhost:8000';
+  // В деве бэкенд крутится на 8000-м порту локально; в проде ожидаем,
+  // что бэкенд опубликован на том же хосте под /api (см. boot.md).
+  const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+    ? 'http://localhost:8000'
+    : `${window.location.protocol}//${window.location.host}/api`;
 
   // Открыть модалку по кнопке «Начать демо»
   if (startDemoBtn && demoModal) {
